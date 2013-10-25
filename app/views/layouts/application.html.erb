@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><%= @page_title%></title>
+		<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+		<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+		<%= csrf_meta_tags %>
+	</head>
+	<body>
+		<header>
+			<div class="logo">
+				OnQuiry
+			</div>
+		</header>
+
+		<div class="wrapper">
+			<nav>
+				
+				<a class="glyphicon glyphicon-home" href="#"> Home</a>
+				<a class="glyphicon glyphicon-pencil" href="#"> Ask</a>
+				<a class="glyphicon glyphicon-book" href="#"> Questions</a>
+				<a class="glyphicon glyphicon-bookmark" href="#"> Topics</a>
+				<a class="glyphicon glyphicon-log-out" href="#"> Logout</a>
+			</nav>
+			
+			<article>
+				<%= yield %>
+			</article>
+
+			<footer>
+				&copy;2013
+			</footer>
+		</div>
+	</body>
+</html>

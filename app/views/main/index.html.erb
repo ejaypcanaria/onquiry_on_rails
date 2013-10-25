@@ -1,0 +1,16 @@
+<% @sample_details = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"%>
+
+
+<% 1.upto(10) do |x| %>
+	<div class="question-container">
+		<h1>This is a sample question?</h1>
+		<span><%= Time.now.strftime('%m-%d-%Y %I:%M:%S %p') %></span>
+		<article>
+			<%= truncate @sample_details, length: 220, omission: '... see more' %>
+		</article>
+		<footer>
+			<span>Answer</span>	
+			<span>Follow</span>	
+		</footer>
+	</div>
+<% end %>

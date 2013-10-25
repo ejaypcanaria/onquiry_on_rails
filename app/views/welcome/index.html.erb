@@ -1,0 +1,47 @@
+<% if flash[:notice] %> 
+
+<div class="alert alert-success">
+	<%= flash[:notice] %>
+</div>
+<% end %>
+
+<% unless @new_user.errors.empty? %>
+	<div class="alert alert-warning">
+		<h1><%= "#{ pluralize(@new_user.errors.size, 'validation')} failed"%></h1>
+		<ul>
+		<% @new_user.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+		<% end %>
+		</ul>
+	</div>
+<% end %>
+
+<div class="form-container-medium">
+	<blockquote>
+		“Any fool can know. The point is to understand.”
+	</blockquote>
+	― Albert Einstein
+</div>
+
+<div class="form-container-medium">
+	<h1>Create an Account</h1>
+
+	<%= form_for @new_user, url: { action: 'register' } do |f| %>
+	<%= f.text_field :name, required: true, placeholder: 'Name', class: 'form-control' %>
+	<%= f.text_field :email, required: true, placeholder: 'Email', class: 'form-control' %>
+	<%= f.password_field :password, required: true, placeholder: 'Password', class: 'form-control' %>
+
+	<%= submit_tag "Create Account", class: 'btn btn-success' %>
+	<% end %>
+</div>
+
+<div class="form-container-medium">
+	<h1>Login</h1>
+
+	<%= form_tag do %>
+	<%= text_field_tag 'email', nil, class: 'form-control', placeholder: 'Email' %>
+	<%= password_field_tag 'password', nil, class: 'form-control', placeholder: 'Password' %>
+	<%= submit_tag 'Login', class: 'btn btn-success' %>
+	<% end %>
+</div>
+
