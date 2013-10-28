@@ -11,12 +11,28 @@
 			<div class="logo">
 				OnQuiry
 			</div>
+			
+			<div class="login">
+				<%= form_for :login, url: { action: :login }, method: :post, html: { class: 'form-inline', role: 'form'} do |f| %>
+					<div class="form-group">
+						<label class="sr-only" for="login_email">Email address</label>
+						<%= f.text_field 'email', required: true, placeholder: 'Email', class: 'form-control' %>
+					</div>
+					
+					<div class="form-group">
+						<label class="sr-only" for="login_password">Password</label>
+						<%= f.password_field 'password', required: true, placeholder: 'Password', class: 'form-control' %>
+					</div>
+					<%= submit_tag "Login", class: 'btn btn-success login-button'%>
+				<% end %>
+			
+			</div>
 		</header>
 
 		<div class="wrapper">
-			<article>
+			<div class="welcome">
 				<%= yield %>
-			</article>
+			</div>
 
 			<footer>
 				&copy;2013

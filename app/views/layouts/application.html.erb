@@ -16,11 +16,26 @@
 		<div class="wrapper">
 			<nav>
 				
-				<a class="glyphicon glyphicon-home" href="#"> Home</a>
-				<a class="glyphicon glyphicon-pencil" href="#"> Ask</a>
-				<a class="glyphicon glyphicon-book" href="#"> Questions</a>
-				<a class="glyphicon glyphicon-bookmark" href="#"> Topics</a>
-				<a class="glyphicon glyphicon-log-out" href="#"> Logout</a>
+				<div class="glyphicon glyphicon-home">
+					<a class="left-nav" href="#"> Home</a>	
+				</div>
+				
+				<div class="glyphicon glyphicon-pencil">
+					<a class="left-nav" href="#">Ask</a>
+				</div>
+				
+				
+				<div class="glyphicon glyphicon-book">
+					<a class="left-nav" href="#">Questions</a>
+				</div>
+				
+				<div class="glyphicon glyphicon-bookmark">
+					<a class="left-nav" href="#">Topics</a>
+				</div>
+				
+				<div class="glyphicon glyphicon-log-out">
+					<%= link_to 'Log out', logout_path, method: :delete, class: 'left-nav' %>
+				</div>
 			</nav>
 			
 			<article>

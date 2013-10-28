@@ -22,3 +22,9 @@ Feature: User logs in
 		Given I am not yet logged in
 		When I access "/home"
 		Then I should be redirected to "/"
+		
+	Scenario: User sign out
+		Given I am already signed in
+		When I click "Log out"
+		Then I should be redirected to "/"
+		And if I access "/home" I should be redirected to "/"

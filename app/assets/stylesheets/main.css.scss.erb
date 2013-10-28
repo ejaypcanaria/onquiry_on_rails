@@ -42,19 +42,7 @@ header .logo {
 	font-size: 1.9em;
 	border-radius: 10px 0 10px;
 	font-family: Pacifico, Georgia, sans-serif;
-}
-
-.form-container-medium {
-	width: 300px;
-	padding: 20px 40px 20px 20px;
 	float: left;
-	background-color: #FFF;
-	box-shadow: 0 0 0.5em #CCC;
-	margin-left: 2%;
-}
-
-.form-container-medium h1 {
-	font-weight: bold;
 }
 
 html, body {
@@ -80,18 +68,24 @@ html, body {
 	padding-top: 2%;
 }
 
-.wrapper > nav > a {
+.wrapper > nav > div {
+	width: 100%;
+	float: left;
+	margin-bottom: 0.5em;
+}
+
+.left-nav {
 	color: #555;
 	height: 1.5em;
 	text-decoration: none;
-	display: block;
+	word-spacing: 0;
 }
 
-.wrapper > nav > a:hover {
+.left-nav:hover {
 	color:  $logo-color;
 }
 
-.wrapper > nav > a:active {
+.left-nav:active {
 	top: 2px;
 	position: relative;
 }
@@ -103,6 +97,7 @@ html, body {
 	padding-top: 2%;
 	margin-left: 20%;
 	float: left;
+	background-color: #fbfbfb;
 }
 
 .wrapper > footer {
@@ -203,4 +198,13 @@ html, body {
 div.alert {
 	padding-left: 2em;
 	width: 50%;
+	margin: 0 auto;
+	margin-bottom: 2%;
+}
+
+.alert-wrapper {
+	margin: 0 auto;
+	width: 100%;
+	float: left;
+	clear: both;
 }

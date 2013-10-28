@@ -1,14 +1,18 @@
 OnquiryOnrails::Application.routes.draw do
-
-  get "/home" => "main#index", as: 'home_index_path'
   
-  post '/login' => "welcome#login"
-  post "/register" => "welcome#register"
+  post 'login' => 'welcome#login'
+  post 'register' => 'welcome#register'
+  
+  scope controller: :main do
+    match 'home' => :index, via: [:get]
+    match 'logout' => :logout, via: [:delete], as: 'logout'
+  end
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
+  root 'welcome#index', as: 'index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,26 +1,39 @@
-<% if object && !object.errors.empty? %>
+<div class="alert-wrapper">
+
+	<% if object && !object.errors.empty? %>
 	<div class="alert alert-warning">
-		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+			&times;
+		</button>
 		<span class="glyphicon glyphicon-warning-sign alert-logo"></span>
 		<strong>Warning!</strong> <%= "#{ pluralize(@new_user.errors.size, 'Validation')} Failed"%>
 		<ul>
-		<% object.errors.full_messages.each do |message| %>
-				<li><%= message %></li>
-		<% end %>
+			<% object.errors.full_messages.each do |message| %>
+			<li>
+				<%= message %>
+			</li>
+			<% end %>
 		</ul>
 	</div>
-	
-<% elsif flash.now[:success] %>
 
-<div class="alert alert-success">
-	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-	<span class="glyphicon glyphicon-ok alert-logo"></span>
-	<p><strong>Success!</strong><%= flash.now[:success] %></p>
-</div>
-<% elsif flash.now[:warning] %>
-	<div class="alert alert-warning">
-		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-		<span class="glyphicon glyphicon-warning-sign alert-logo"></span>
-		<%= flash.now[:warning]%>	
+	<% elsif flash.now[:success] %>
+
+	<div class="alert alert-success">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+			&times;
+		</button>
+		<span class="glyphicon glyphicon-ok alert-logo"></span>
+		<p>
+			<strong>Success!</strong><%= flash.now[:success] %>
+		</p>
 	</div>
-<% end %>
+	<% elsif flash.now[:warning] %>
+	<div class="alert alert-warning">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+			&times;
+		</button>
+		<span class="glyphicon glyphicon-warning-sign alert-logo"></span>
+		<%= flash.now[:warning]%>
+	</div>
+	<% end %>
+</div>

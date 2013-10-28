@@ -56,3 +56,15 @@ end
 When(/^I access "(.*?)"$/) do |path|
   visit path
 end
+
+Given(/^I am already signed in$/) do
+  visit '/'
+  fill_in "login_email", with: "ejay@onquiry.com"
+  fill_in "login_password", with: "12345678"
+  click_on "Login"
+end
+
+Then(/^if I access "(.*?)" I should be redirected to "(.*?)"$/) do |source_page, target_page|
+  visit source_page
+  current_path.should == target_page
+end
