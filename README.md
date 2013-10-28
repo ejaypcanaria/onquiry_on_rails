@@ -1,2 +1,2 @@
-onquiry_on_rails
+OnQuiry on Rails
 ================
