@@ -11,182 +11,196 @@ $logo-color: #0E8144;
  *   font-face declarations
  */
 @font-face {
-  font-family: 'Pacifico';
-  src: url('<%= asset_path("Pacifico.ttf") %>');
+	font-family: 'Pacifico';
+	src: url('<%= asset_path("Pacifico.ttf") %>');
 }
 
 blockquote {
-  font-size: 2em;
+	font-size: 2em;
 }
 
 header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: $header-size;
-  display: block;
-  background-color: $green;
-  z-index: 999;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height:  $header-size;
+	display: block;
+	background-color:  $green;
+	z-index: 999;
 }
 
 header .logo {
-  margin-left: 10%;
-  margin-top: 5px;
-  height: 50px;
-  width: 120px;
-  padding-top: 2px;
-  text-align: center;
-  background-color: $logo-color;
-  color: #FFF;
-  font-size: 1.9em;
-  border-radius: 10px 0 10px;
-  font-family: Pacifico, Georgia, sans-serif;
+	margin-left: 10%;
+	margin-top: 5px;
+	height: 50px;
+	width: 120px;
+	padding-top: 2px;
+	text-align: center;
+	background-color:  $logo-color;
+	color: #FFF;
+	font-size: 1.9em;
+	border-radius: 10px 0 10px;
+	font-family: Pacifico, Georgia, sans-serif;
 }
 
 .form-container-medium {
-  width: 300px;
-  padding: 20px 40px 20px 20px;
-  float: left;
-  background-color: #FFF;
-  box-shadow: 0 0 0.5em #CCC;
-  margin-left: 2%;
+	width: 300px;
+	padding: 20px 40px 20px 20px;
+	float: left;
+	background-color: #FFF;
+	box-shadow: 0 0 0.5em #CCC;
+	margin-left: 2%;
 }
 
 .form-container-medium h1 {
-  font-weight: bold;
+	font-weight: bold;
 }
 
 html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
+	margin: 0;
+	padding: 0;
+	height: 100%;
 }
 
 .wrapper {
-  min-height: 100%;
-  height: 100%;
-  position: relative;
-  padding-top: $header-size;
+	min-height: 100%;
+	height: 100%;
+	position: relative;
+	padding-top:  $header-size;
 }
 
 .wrapper > nav {
-  position: fixed;
-  min-height: 100%;
-  font-size: 1.2em;
-  width: 20%;
-  max-width: 20%;
-  padding-left: 10%;
-  padding-top: 2%;
+	position: fixed;
+	min-height: 100%;
+	font-size: 1.2em;
+	width: 20%;
+	max-width: 20%;
+	padding-left: 10%;
+	padding-top: 2%;
 }
 
 .wrapper > nav > a {
-  color: #555;
-  height: 1.5em;
-  text-decoration: none;
-  display: block;
+	color: #555;
+	height: 1.5em;
+	text-decoration: none;
+	display: block;
 }
 
 .wrapper > nav > a:hover {
-  color: $logo-color;
+	color:  $logo-color;
 }
 
 .wrapper > nav > a:active {
-  top: 2px;
-  position: relative;
-}  
+	top: 2px;
+	position: relative;
+}
 
 .wrapper > article {
-  width: 80%;
-  padding: 10px;
-  padding-bottom: 50px;
-  padding-top: 2%;
-  margin-left: 20%;
-  float: left;
+	width: 80%;
+	padding: 10px;
+	padding-bottom: 50px;
+	padding-top: 2%;
+	margin-left: 20%;
+	float: left;
 }
 
 .wrapper > footer {
-  font-family: Tahoma, "Times New Roman", serif;
-  font-size: 0.8em;
-  position: fixed;
-  padding: 0 10%;
-  bottom: 0;
-  height: 35px;
-  line-height: 35px;
-  width: 100%;
-  background-color: #333;
-  color: #FFF;
-  clear: both;
+	font-family: Tahoma, "Times New Roman", serif;
+	font-size: 0.8em;
+	position: fixed;
+	padding: 0 10%;
+	bottom: 0;
+	height: 35px;
+	line-height: 35px;
+	width: 100%;
+	background-color: #333;
+	color: #FFF;
+	clear: both;
 }
 
-
-
 .question-container {
-  width: 50%;
-  min-width: 30% !important;
-  height: 150px;
-  padding: 10px;
-  float: left;
-  clear: both;
-  background-color: #FFF;
-  margin-bottom: 10px;
-  box-shadow: 0 0 0.1em #DDD;
-  border: 1px solid #DDD;
-  position: relative;
+	width: 50%;
+	min-width: 30% !important;
+	height: 150px;
+	padding: 10px;
+	float: left;
+	clear: both;
+	background-color: #FFF;
+	margin-bottom: 10px;
+	box-shadow: 0 0 0.1em #DDD;
+	border: 1px solid #DDD;
+	position: relative;
 }
 
 .question-container > h1 {
-  margin: 0;
-  padding: 0;
-  font-weight: bold;
-  font-size: 1.2em;
+	margin: 0;
+	padding: 0;
+	font-weight: bold;
+	font-size: 1.2em;
 }
 
 .question-container > footer {
-  color: #AAA;
-  width: 100%;
-  height: 30px;
-  line-height: 30px;
-  text-align: center;
-  display: block;
-  background-color: #EEE;
-  position: absolute;
-  bottom: 0;
-  left: 0;
+	color: #AAA;
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	display: block;
+	background-color: #EEE;
+	position: absolute;
+	bottom: 0;
+	left: 0;
 }
 
 .question-container > article {
-  font-size: 0.9em;
-  height: 50%;
-  color: #555;
-  text-align: justify;
-  padding: 0px 15px 5px 15px;
+	font-size: 0.9em;
+	height: 50%;
+	color: #555;
+	text-align: justify;
+	padding: 0px 15px 5px 15px;
 }
 
 .question-container > span:first-of-type {
-  font-family: Tahoma, "Times New Romain", serif;
-  font-size: 10px;
-  padding-left: 10px;
-  color: #BBB;
-  
+	font-family: Tahoma, "Times New Romain", serif;
+	font-size: 10px;
+	padding-left: 10px;
+	color: #BBB;
 }
 
 .question-container > footer > span {
-  width: 50%;
-  float: left;
-  margin: 0;
-  padding: 0;
+	width: 50%;
+	float: left;
+	margin: 0;
+	padding: 0;
 }
 
 .question-container > footer > span:first-of-type {
-  border-right: 1px solid #CCC;
+	border-right: 1px solid #CCC;
 }
 
-
+.alert-logo {
+	display: block;
+	font-size: 2em;
+	position: relative;
+	float: left;
+	top: -5px;
+	left: -10px;
+	margin: 0;
+}
 
 .alert-warning h1 {
-  font-size: 20px;
-  font-weight: bold;
-  margin: 0;
-  padding: 0;
+	font-weight: bold;
+	font-size: 1.5em;
+	margin: 0;
+	padding: 0;
+}
+
+.alert-warning ul {
+	margin-top: 1em;	
+}
+
+div.alert {
+	padding-left: 2em;
+	width: 50%;
 }

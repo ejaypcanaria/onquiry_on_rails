@@ -36,7 +36,8 @@ group :test do
   gem 'capybara'
   gem 'rspec-rails'
   gem 'database_cleaner'
-  gem 'cucumber-rails'
+  gem 'cucumber-rails',require: false
+  gem 'shoulda-matchers'
 end
 
 # Use ActiveModel has_secure_password
