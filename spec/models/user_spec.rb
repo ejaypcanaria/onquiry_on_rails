@@ -4,7 +4,6 @@ describe User do
 
   before do
     DatabaseCleaner.start
-    User.skip_callback(:validation, :after, :hash_password)
   end
 
   after do
@@ -22,7 +21,7 @@ describe User do
     end
   end
 
-  context "When saved" do
+  context "before save" do
     it { should validate_presence_of :password }
     it { should ensure_length_of(:password).is_at_least(8) }
     it { should ensure_length_of(:first_name).is_at_most(60) }

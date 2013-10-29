@@ -6,8 +6,8 @@ Feature: User logs in
 	
 	Scenario: User inputted valid account
 		Given I am on the welcome page
-		When I fill in "login_email" with "ejay@onquiry.com"
-		And I fill in "login_password" with "12345678"
+		When I fill in "login_email" with "admin@onquiry.com"
+		And I fill in "login_password" with "adminadmin123"
 		And I click "Login"
 		Then I should be redirected to "/home"
 		

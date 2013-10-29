@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131027120950) do
+ActiveRecord::Schema.define(version: 20131029134119) do
+
+  create_table "questions", force: true do |t|
+    t.string   "question",   null: false
+    t.text     "details"
+    t.string   "permalink",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "questions", ["question", "permalink"], name: "unique_question_permalink_index", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "first_name", limit: 60,  null: false

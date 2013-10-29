@@ -3,6 +3,11 @@ OnquiryOnrails::Application.routes.draw do
   post 'login' => 'welcome#login'
   post 'register' => 'welcome#register'
   
+  scope path: 'question', controller: :questions do
+    match 'create' => :create, via: [:post]
+    match '/:permalink' => :show, via: [:get], as: 'show_question'
+  end
+  
   scope controller: :main do
     match 'home' => :index, via: [:get]
     match 'logout' => :logout, via: [:delete], as: 'logout'

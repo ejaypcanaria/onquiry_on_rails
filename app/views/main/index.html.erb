@@ -1,7 +1,17 @@
 <% @sample_details = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"%>
 
+<div class="feed-wrapper">
+	<div class="feed-ask-wrapper">
+		<%= form_for @question, url: { controller: :questions, action: :create}, html: {class: 'form-inline', role: 'form'} do |f| %>
+			<div class="form-group col-lg-10">
+				<label class="sr-only" for="question_question">Question</label>
+				<%= f.text_field :question, require: true, placeholder: 'What is your question?', class: 'form-control' %>
+			</div>	
+			<%= submit_tag 'Ask', class: 'btn btn-success' %>
+		<% end %>
+	</div>
 
-<% 1.upto(10) do |x| %>
+	<% 1.upto(10) do |x| %>
 	<div class="question-container">
 		<h1>This is a sample question?</h1>
 		<span><%= Time.now.strftime('%m-%d-%Y %I:%M:%S %p') %></span>
@@ -9,8 +19,23 @@
 			<%= truncate @sample_details, length: 220, omission: '... see more' %>
 		</article>
 		<footer>
-			<span>Answer</span>	
-			<span>Follow</span>	
+			<span>Answer</span>
+			<span>Follow</span>
 		</footer>
 	</div>
-<% end %>
+	<% end %>
+</div>
+
+<!-- 
+<div class="simple-ask">
+	<h1>Ask</h1>
+	<div class="simple-ask-form">
+		<%= form_for :question do |f| %>
+		<%= f.text_field :question, require: true, placeholder: 'Your Question', class: 'form-control' %>
+		<%= f.text_area :details, placeholder: 'Description', class: 'form-control', rows: 4 %>
+
+		<%= submit_tag 'Add Question', class: 'btn btn-success' %>
+		<% end %>
+	</div>
+</div>
+-->

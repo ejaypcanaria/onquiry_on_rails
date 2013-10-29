@@ -59,8 +59,9 @@ end
 
 Given(/^I am already signed in$/) do
   visit '/'
-  fill_in "login_email", with: "ejay@onquiry.com"
-  fill_in "login_password", with: "12345678"
+  user = FactoryGirl.build(:admin)
+  fill_in "login_email", with: user.email
+  fill_in "login_password", with: user.password
   click_on "Login"
 end
 

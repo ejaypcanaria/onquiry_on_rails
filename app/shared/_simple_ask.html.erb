@@ -1,0 +1,9 @@
+<div class="simple-ask-form">
+	<h1>Ask</h1>
+	<%= form_for question do |f| %>
+		<%= f.text_field :question, require: true, placeholder: 'Your Question' %>
+		<%= f.text_area :description, placeholder: 'Description' %>
+		
+		<%= submit_tag 'Add Question' %>
+	<% end %>
+</div>

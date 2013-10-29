@@ -1,0 +1,22 @@
+.simple-ask {
+  margin: 0;
+  padding: 0;
+  margin-left: 45%;
+  width: 50%;
+  position: fixed;
+}
+
+.simple-ask > h1 {
+  margin: 0;
+  font-size: 2em;
+}
+
+.simple-ask-form {
+  width: 200px;
+}
+
+.simple-ask-form textarea {
+  margin: 10px;
+  resize: none;
+  width: 250px;
+}
