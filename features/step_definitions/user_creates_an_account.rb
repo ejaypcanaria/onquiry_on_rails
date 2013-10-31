@@ -69,3 +69,10 @@ Then(/^if I access "(.*?)" I should be redirected to "(.*?)"$/) do |source_page,
   visit source_page
   current_path.should == target_page
 end
+
+Then(/^I should see all seed questions$/) do
+  10.times do
+    question = FactoryGirl.build(:seed_question)
+    page.should have_content question.question
+  end
+end

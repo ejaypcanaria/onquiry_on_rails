@@ -1,41 +1,64 @@
-<% @sample_details = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"%>
+<script>
+
+$(document).ready(function() {
+	
+	$('#load-more-feed')
+		.bind("ajax:beforeSend", function(evt, xhr, settings) {
+			var $offset = $('#offset-value').val();
+			var $href = $('#load-more-feed').attr("href");
+			$('#load-more-feed').attr("href",$href+$offset);
+		})
+	
+		.bind("ajax:success", function(evt, data, status, xhr) {
+			$('#feed-container').append(xhr.responseText);
+		});
+	
+	
+});
+</script>
+
+<div class="feed-ask-wrapper">
+	<%= form_for @question, url: { controller: :questions, action: :create}, html: {class: 'form-inline', role: 'form'} do |f| %>
+	<div class="form-group col-lg-10">
+		<label class="sr-only" for="question_question">Question</label>
+		<%= f.text_field :question, require: true, placeholder: 'What is your question?', class: 'form-control' %>
+	</div>
+	<%= submit_tag 'Ask', class: 'btn btn-success' %>
+	<% end %>
+</div>
 
 <div class="feed-wrapper">
-	<div class="feed-ask-wrapper">
-		<%= form_for @question, url: { controller: :questions, action: :create}, html: {class: 'form-inline', role: 'form'} do |f| %>
-			<div class="form-group col-lg-10">
-				<label class="sr-only" for="question_question">Question</label>
-				<%= f.text_field :question, require: true, placeholder: 'What is your question?', class: 'form-control' %>
-			</div>	
-			<%= submit_tag 'Ask', class: 'btn btn-success' %>
-		<% end %>
+	<div id="feed-container">
+		
 	</div>
-
-	<% 1.upto(10) do |x| %>
-	<div class="question-container">
-		<h1>This is a sample question?</h1>
-		<span><%= Time.now.strftime('%m-%d-%Y %I:%M:%S %p') %></span>
-		<article>
-			<%= truncate @sample_details, length: 220, omission: '... see more' %>
-		</article>
+	<!-- <% @questions.each do |question_feed| %>
+	<section class="question-container">
+		<h1><%= question_feed.question %></h1>
+		<span><%= time_ago_in_words question_feed.created_at %></span>
+		<p>
+			<%= truncate_html(question_feed.details, length: 180, omission: "#{link_to 'see more',show_question_path(question_feed)}")%>
+		</p>
 		<footer>
 			<span>Answer</span>
 			<span>Follow</span>
 		</footer>
-	</div>
-	<% end %>
+	</section>
+	<% end %> -->
+	<input type="hidden" value="0" id="offset-value" />
+	
+	<%= link_to 'Load More', load_question_path(limit: 10, offset: '' ), method: :get, remote: true,  id: 'load-more-feed' %>
 </div>
 
-<!-- 
+<!--
 <div class="simple-ask">
-	<h1>Ask</h1>
-	<div class="simple-ask-form">
-		<%= form_for :question do |f| %>
-		<%= f.text_field :question, require: true, placeholder: 'Your Question', class: 'form-control' %>
-		<%= f.text_area :details, placeholder: 'Description', class: 'form-control', rows: 4 %>
+<h1>Ask</h1>
+<div class="simple-ask-form">
+<%= form_for :question do |f| %>
+<%= f.text_field :question, require: true, placeholder: 'Your Question', class: 'form-control' %>
+<%= f.text_area :details, placeholder: 'Description', class: 'form-control', rows: 4 %>
 
-		<%= submit_tag 'Add Question', class: 'btn btn-success' %>
-		<% end %>
-	</div>
+<%= submit_tag 'Add Question', class: 'btn btn-success' %>
+<% end %>
+</div>
 </div>
 -->

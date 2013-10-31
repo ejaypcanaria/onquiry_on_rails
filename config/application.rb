@@ -12,6 +12,7 @@ module OnquiryOnrails
     
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+    config.time_zone = 'Hong Kong'
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

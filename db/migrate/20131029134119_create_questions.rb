@@ -8,6 +8,6 @@ class CreateQuestions < ActiveRecord::Migration
       t.timestamps
     end
     
-    add_index "questions", [:question,:permalink], unique: true, name: 'unique_question_permalink_index'
+    add_index "questions", [:question,:permalink], unique: true, name: 'qstn_prmlnk_index'
   end
 end

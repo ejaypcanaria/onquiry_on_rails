@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20131029134119) do
     t.datetime "updated_at"
   end
 
-  add_index "questions", ["question", "permalink"], name: "unique_question_permalink_index", unique: true, using: :btree
+  add_index "questions", ["question", "permalink"], name: "qstn_prmlnk_index", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "first_name", limit: 60,  null: false

@@ -1,69 +1,91 @@
 .feed-wrapper {
-  width: 50%;
-  float: left;
+	width: 50%;
+	margin-left: 3px;
+	margin-top: 40px;
+	float: left;
 }
 
-.question-container {
-  width: 100%;
-  height: 150px;
+.feed-wrapper > button {
   padding: 10px;
-  float: left;
-  clear: both;
-  background-color: #FFF;
-  margin-bottom: 10px;
-  box-shadow: 0 0 0.1em #DDD;
-  border: 1px solid #DDD;
-  position: relative;
-}
-
-.question-container > h1 {
-  margin: 0;
-  padding: 0;
-  font-weight: bold;
-  font-size: 1.2em;
-}
-
-.question-container > footer {
-  color: #AAA;
+  margin: 0 auto;
   width: 100%;
-  height: 30px;
-  line-height: 30px;
-  text-align: center;
-  display: block;
-  background-color: #EEE;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-}
-
-.question-container > article {
-  font-size: 0.9em;
-  height: 50%;
-  color: #555;
-  text-align: justify;
-  padding: 0px 15px 5px 15px;
-}
-
-.question-container > span:first-of-type {
-  font-family: Tahoma, "Times New Romain", serif;
-  font-size: 10px;
-  padding-left: 10px;
+  background-color: #DDD;
+  border: 1px solid #CCC;
   color: #BBB;
 }
 
+.feed-wrapper > button:hover {
+  color: #FFF;
+}
+
+.question-container {
+	width: 100%;
+	max-height: 200px;
+	padding: 10px 10px 20px 10px;
+	float: left;
+	clear: both;
+	background-color: #FFF;
+	margin-bottom: 10px;
+	box-shadow: 0 0 0.1em #DDD;
+	border: 1px solid #DDD;
+	position: relative;
+	word-wrap: break-word;
+}
+
+.question-container > h1 {
+	margin: 0;
+	padding: 0;
+	font-weight: bold;
+	font-size: 1.2em;
+}
+
+.question-container > footer {
+	color: #AAA;
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	display: block;
+	background-color: #EEE;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+.question-container > p {
+	font-size: 0.9em;
+	height: 50%;
+	color: #555;
+	text-align: justify;
+	padding: 0px 15px 5px 15px;
+	
+}
+
+.question-container > span:first-of-type {
+	font-family: Tahoma, "Times New Romain", serif;
+	font-size: 10px;
+	padding-left: 10px;
+	color: #BBB;
+}
+
 .question-container > footer > span {
-  width: 50%;
-  float: left;
-  margin: 0;
-  padding: 0;
+	width: 50%;
+	float: left;
+	margin: 0;
+	padding: 0;
 }
 
 .question-container > footer > span:first-of-type {
-  border-right: 1px solid #CCC;
+	border-right: 1px solid #CCC;
 }
 
 .feed-ask-wrapper {
-  width: 100%;
-  height: 50px;
-  margin-bottom: 5%;
+	width: 40%;
+	height: 55px;
+	position: fixed;
+	top: 60px;
+	display: block;
+	z-index: 999;
+	border-radius: 0 0 10px 10px;
+	background-color: #CCC;
 }

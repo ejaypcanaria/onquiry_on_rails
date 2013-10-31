@@ -11,6 +11,16 @@ class QuestionsController < ApplicationController
     @question = Question.find_by_permalink(params[:permalink])
   end
   
+  def load_more
+    puts params[:off_set_value]
+    @questions = Question.order("questions.created_at").limit(params[:limit]).offset(0).to_a
+    
+    respond_to do |format|
+      format.html { render partial: 'question_feeds', locals: { questions: @questions } }
+      format.json { render json: @questions }
+    end
+  end
+  
   def question_param
     params.require(:question).permit(:question, :permalink, :details)
   end
