@@ -8,8 +8,8 @@ require 'factory_girl_rails'
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 100.times do
-   FactoryGirl.create(:seed_question)
-   sleep 2
+   FactoryGirl.create(:question)
+   sleep 1
 end
 
 FactoryGirl.create(:admin)

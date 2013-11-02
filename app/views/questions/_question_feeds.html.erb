@@ -1,10 +1,16 @@
 <% questions.each do |question_feed| %>
 <section class="question-container">
-	<h1><%= question_feed.question %></h1>
-	<span><%= time_ago_in_words question_feed.created_at %></span>
-	<p>
-		<%= truncate_html(question_feed.details, length: 180, omission: "#{link_to '... see more',show_question_path(question_feed)}")%>
-	</p>
+	<header>
+		<h1><%= link_to question_feed.question, show_question_path(question_feed) %></h1>
+		<span class="date"><%= time_ago_in_words question_feed.created_at %></span>
+	</header>
+	
+	<article>
+		<p>
+			<%= truncate_html(question_feed.details, length: 180, omission: "... #{link_to 'see more',show_question_path(question_feed)}")%>
+		</p>
+	</article>
+	
 	<footer>
 		<span>Answer</span>
 		<span>Follow</span>

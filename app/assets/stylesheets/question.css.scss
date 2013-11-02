@@ -20,3 +20,56 @@
   resize: none;
   width: 250px;
 }
+
+.show-question-wrapper {
+  width: 70%;
+  padding: 1em 2em;
+  padding-right: 5em;
+  word-wrap: break-word;
+  margin: 20px;
+  background-color: #FFF;
+  box-shadow: 0 0 0.5em #DDD;
+  position: relative;
+}
+
+.show-question-wrapper > header h1 {
+	font-family: "League Gothic Regular", Times, serif;
+  	padding: 0;
+  	margin: 0;
+  	color: #444;
+}
+
+.show-question-wrapper .date {
+	display: block;
+	width: 60px;
+	height: 50px;
+	background-color: #0E8144;
+	right: 0;
+	top: 10px;
+	position: absolute;
+	color: #FFF;
+	text-align: center;
+}
+
+.show-question-wrapper p {
+	text-align: justify;
+}
+
+.show-question-wrapper .date-day {
+	font-family: Bebas, Tahoma, serif;
+	font-size: 1.5em;
+	display: block;
+}
+
+.show-question-wrapper .date-month-year {
+	font-size: 0.7em;
+	font-family: Bebas, Tahoma, serif;
+}
+
+.show-question-wrapper header {
+	
+}
+
+.show-question-wrapper h1:first-letter {
+	text-transform: capitalize;
+}

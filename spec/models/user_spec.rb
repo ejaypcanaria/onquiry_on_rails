@@ -4,6 +4,7 @@ describe User do
 
   before do
     DatabaseCleaner.start
+    User.skip_callback(:validation, :after, :hash_password)
   end
 
   after do
@@ -21,6 +22,8 @@ describe User do
     end
   end
 
+  it { should have_many :questions }
+
   context "before save" do
     it { should validate_presence_of :password }
     it { should ensure_length_of(:password).is_at_least(8) }
@@ -34,13 +37,14 @@ describe User do
   end
 
   it "should provide an encrypted salt value" do
+
     @user.send(:generate_salt)
     expect(@user.salt).not_to be_nil
     expect(@user.salt.length).to eql(40)
   end
 
   it "encrypts the password" do
-
+ 
     raw_password = "12345678"
     @user.email = "ejay@onquiry.com"
     @user.password = raw_password

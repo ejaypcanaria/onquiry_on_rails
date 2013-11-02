@@ -15,11 +15,21 @@ $logo-color: #0E8144;
 	src: url('<%= asset_path("Pacifico.ttf") %>');
 }
 
+@font-face {
+	font-family: 'Bebas';
+	src: url('<%= asset_path("bebas.ttf") %>');
+}
+
+@font-face {
+	font-family: 'League Gothic Regular';
+	src: url('<%= asset_path("LeagueGothic-Regular.otf") %>');
+}
+
 blockquote {
 	font-size: 2em;
 }
 
-header {
+header.main {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -30,7 +40,7 @@ header {
 	z-index: 999;
 }
 
-header .logo {
+header.main .logo {
 	margin-left: 10%;
 	margin-top: 5px;
 	height: 50px;
@@ -92,12 +102,9 @@ html, body {
 
 .wrapper > article {
 	width: 80%;
-	padding: 10px;
-	padding-bottom: 50px;
-	padding-top: 2%;
 	margin-left: 20%;
 	float: left;
-	background-color: #fbfbfb;
+	//background-color: #fbfbfb;
 }
 
 .wrapper > footer {
@@ -116,36 +123,22 @@ html, body {
 
 
 .alert-logo {
-	display: block;
-	font-size: 2em;
-	position: relative;
-	float: left;
-	top: -5px;
-	left: -10px;
-	margin: 0;
-}
-
-.alert-warning h1 {
-	font-weight: bold;
 	font-size: 1.5em;
-	margin: 0;
-	padding: 0;
+	float: left;
+	padding-right: 10px;
+	margin-top: -5px;
 }
 
-.alert-warning ul {
-	margin-top: 1em;	
-}
-
-div.alert {
-	padding-left: 2em;
+.alert-container {
 	width: 50%;
-	margin: 0 auto;
-	margin-bottom: 2%;
+	margin: inherit;
+}
+
+.alert-wrapper ul li {
+	list-style-type: none;
 }
 
 .alert-wrapper {
-	margin: 0 auto;
 	width: 100%;
-	float: left;
-	clear: both;
+	margin: 0 auto;
 }

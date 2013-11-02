@@ -7,6 +7,7 @@ OnquiryOnrails::Application.routes.draw do
     match 'create' => :create, via: [:post]
     match '/:permalink' => :show, via: [:get], as: 'show_question'
     match 'load/:limit/:offset' => :load_more, via: [:get], as: 'load_question'
+    match 'update' => :update, via: [:patch]
   end
   
   scope controller: :main do

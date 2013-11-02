@@ -1,7 +1,7 @@
 module ApplicationHelper
   
-  def render_alert(object)
-    render partial: '../shared/alert', locals: {object: object} 
+  def render_alert(object, options={})
+    render partial: '../shared/alert', locals: {object: object, alert_container_class: options[:alert_container_class]} 
   end
   
   def truncate_html(text, options={})

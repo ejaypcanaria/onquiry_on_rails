@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   
   before_save :hash_password
   
+  has_many :questions
   
   validates :email, uniqueness: true, presence: true, length: { maximum: 100 }
   validates :password, presence: true, length: { minimum: 8 }

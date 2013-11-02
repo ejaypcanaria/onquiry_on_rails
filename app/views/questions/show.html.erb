@@ -1,6 +1,43 @@
-<article class="show-question-wrapper">
+<script>
+	$(document).ready(function() {
+		$('#add-details-form').hide();
+		
+		$('#add-details').click(function() {
+			$('#add-details-form').fadeIn();
+			$('#add-details').hide();
+			return false;
+		});
+		
+		$('#add-details-cancel').click(function() {
+			$('#add-details-form').hide();
+			$('#add-details').show();
+			return false;
+		});
+	});
+</script>
 
-	<h1><%= @question.question %></h1>
-	<%= time_ago_in_words @question.created_at %>
+<section class="show-question-wrapper">
+	<header>
+		<h1><%= @question.question %></h1>
+		<span class="asker"><%= @question.user.first_name %></span>
+	</header>
+	
+	<div class="date">
+		<span class="date-day"><%= @question.created_at.strftime("%d") %></span>
+		<span class="date-month-year"><%= @question.created_at.strftime("%m / %Y") %></span>
+	</div>
 	<p><%= @question.details %></p>
-</article>
+	
+	
+	<% unless @question.details %>
+		<%= form_for @question, url: { action: :update }, method: :patch, html: {id: "add-details-form"} do |f| %>
+			<%= f.text_area :details, class: "form-control" %>
+			<%= f.hidden_field :id, value: @question.id %>
+					
+			<%= submit_tag "Add", class: "btn btn-success"%>
+			<a href="#" id="add-details-cancel" class="btn btn-success">Cancel</a>
+		<% end %>
+		<a href="#" id="add-details">Add Details</a>
+		
+	<% end %>
+</section>

@@ -70,9 +70,26 @@ Then(/^if I access "(.*?)" I should be redirected to "(.*?)"$/) do |source_page,
   current_path.should == target_page
 end
 
-Then(/^I should see all seed questions$/) do
+Then(/^I should see the last 10 seed questions$/) do
   10.times do
-    question = FactoryGirl.build(:seed_question)
+    question = FactoryGirl.build(:question, :last_10)
     page.should have_content question.question
   end
+end
+
+Then(/^I should see next (\d+) seed questions$/) do |question_count|
+  10.times do
+    question = FactoryGirl.build(:question, :next_10)
+    page.should have_content question.question
+  end
+end
+
+Then(/^I should see "(.*?)" in question$/) do |content|
+  within(:css, "span.asker") do
+    page.should have_content content
+  end
+end
+
+Then(/^I should be redirected to "(.*?)" page$/) do |page|
+  current_path.should == show_question_path(page.parameterize)
 end

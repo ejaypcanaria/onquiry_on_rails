@@ -6,9 +6,9 @@ Feature: Question Feed
 	
 	Scenario: All questions in the feed
 		Given I am already signed in
-		Then I should see all seed questions
+		Then I should see the last 10 seed questions
 	
 	Scenario: Load more click
 		Given I am already signed in
 		When I click "Load More"
-		Then I should see all seed questions
+		Then I should see next 10 seed questions

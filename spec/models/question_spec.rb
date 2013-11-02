@@ -19,6 +19,8 @@ describe Question do
     end
   end
   
+  it { should belong_to :user }
+  
   context "before save" do
     
     it { should validate_presence_of :question }
@@ -27,24 +29,38 @@ describe Question do
     it { should ensure_length_of(:question).is_at_most(255) }
     it { should ensure_length_of(:permalink).is_at_most(255)}
     
+    it { should validate_uniqueness_of(:question).with_message("already exists.") }
+    
+  end
+  
+  context "after validation" do
+    it "should check the error for already exist message" do
+      
+      question = FactoryGirl.build(:question)
+      question.save
+      expect(question.already_exist?).to be_true
+      
+      question2 = FactoryGirl.build(:question, question: "New question")
+      question2.save
+      expect(question2.already_exist?).to be_false
+    end
   end
   
   context "after save" do
     it "should generate a permalink based on the given question" do
       Question.set_callback(:validation, :before, :generate_permalink)
       
-      question = FactoryGirl.create(:dummy_question)
+      question = FactoryGirl.create(:question, :dummy)
       expect(question.permalink).not_to be_nil
       expect(question.permalink).to eql(question.question.parameterize)
     end
-    
     
   end
   
   it "should be able to retrieve a question using permalink" do
       Question.set_callback(:validation, :before, :generate_permalink)
       
-      question = FactoryGirl.build(:seed_question)
+      question = FactoryGirl.build(:question)
       existing_question = Question.find_by_permalink(question.permalink)
       expect(existing_question).not_to be_nil
       expect(existing_question.question).to eql(question.question)
@@ -53,9 +69,8 @@ describe Question do
   it "should set the to_param to permalink" do
     Question.set_callback(:validation, :before, :generate_permalink)
     
-    question = FactoryGirl.create(:dummy_question)
+    question = FactoryGirl.create(:question, :dummy)
     expect(question.to_param).to eql(question.question.parameterize)
   end
-  
   
 end
