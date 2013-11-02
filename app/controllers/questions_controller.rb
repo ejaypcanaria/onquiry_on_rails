@@ -12,9 +12,8 @@ class QuestionsController < ApplicationController
   end
   
   def load_more
-    puts params[:off_set_value]
-    @questions = Question.order("questions.created_at").limit(params[:limit]).offset(0).to_a
-    
+    @questions = Question.order("questions.created_at DESC").limit(params[:limit]).offset(params[:offset]).to_a
+    #@questions = Question.paginate(page: params[:page])
     respond_to do |format|
       format.html { render partial: 'question_feeds', locals: { questions: @questions } }
       format.json { render json: @questions }

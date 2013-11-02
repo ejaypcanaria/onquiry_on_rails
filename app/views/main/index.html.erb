@@ -1,64 +1,81 @@
+<% @page_title = "Welcome #{session[:first_name]}!" %>
+
 <script>
+didScroll = false;
+
+$(window).scroll(function() {
+	didScroll = true;
+});
+
+setInterval(function() {
+	if (didScroll) {
+		didScroll = false;
+		loadMoreFeed();
+	}
+}, 0);
+
+setInterval(function() {
+	location.reload();
+}, 1000 * 60 * 5);
 
 $(document).ready(function() {
 	
+	var $origText = $('#load-more-feed').text();
+	var $counter = 10;
+	
+	addBackToTopListener();
+	
 	$('#load-more-feed')
 		.bind("ajax:beforeSend", function(evt, xhr, settings) {
-			var $offset = $('#offset-value').val();
-			var $href = $('#load-more-feed').attr("href");
-			$('#load-more-feed').attr("href",$href+$offset);
+			$('#load-more-feed').text("");
+			$('.load-more-wrapper').css('background-image','url("<%= asset_path('ajax-loader.gif') %>")');
 		})
-	
+
 		.bind("ajax:success", function(evt, data, status, xhr) {
-			$('#feed-container').append(xhr.responseText);
+
+			setTimeout(function() {
+				if(xhr.responseText == "") {
+					$('#load-more-feed').hide();
+					$('.load-more-wrapper').text("No More Feed");
+				} else {
+					$('#feed-container').append(xhr.responseText);
+				}
+			
+				$('#load-more-feed').text($origText);
+				$('.load-more-wrapper').css('background-image','none');
+			
+				$counter = $counter + 10;
+				$('#load-more-feed').attr("href","/question/load/10/" + $counter);
+			
+			}, 500);
 		});
-	
-	
 });
+
 </script>
+
 
 <div class="feed-ask-wrapper">
 	<%= form_for @question, url: { controller: :questions, action: :create}, html: {class: 'form-inline', role: 'form'} do |f| %>
 	<div class="form-group col-lg-10">
 		<label class="sr-only" for="question_question">Question</label>
-		<%= f.text_field :question, require: true, placeholder: 'What is your question?', class: 'form-control' %>
+		<%= f.text_field :question, require: true, placeholder: 'What is your question?', class: 'form-control', required: true %>
 	</div>
 	<%= submit_tag 'Ask', class: 'btn btn-success' %>
 	<% end %>
+	
+	
 </div>
 
 <div class="feed-wrapper">
 	<div id="feed-container">
-		
-	</div>
-	<!-- <% @questions.each do |question_feed| %>
-	<section class="question-container">
-		<h1><%= question_feed.question %></h1>
-		<span><%= time_ago_in_words question_feed.created_at %></span>
-		<p>
-			<%= truncate_html(question_feed.details, length: 180, omission: "#{link_to 'see more',show_question_path(question_feed)}")%>
-		</p>
-		<footer>
-			<span>Answer</span>
-			<span>Follow</span>
-		</footer>
-	</section>
-	<% end %> -->
-	<input type="hidden" value="0" id="offset-value" />
+		<%= render partial: 'questions/question_feeds', locals: { questions: @questions } %>
+	</div>	
 	
-	<%= link_to 'Load More', load_question_path(limit: 10, offset: '' ), method: :get, remote: true,  id: 'load-more-feed' %>
+	<div class="load-more-wrapper">
+		<%= link_to 'Load More', load_question_path(limit: 10, offset: 10), method: :get, remote: true,  id: 'load-more-feed' %>	
+	</div>
+	
+	<a href="#" class="back-to-top"><span class="glyphicon glyphicon-circle-arrow-up"></span>Back to top</a>
 </div>
 
-<!--
-<div class="simple-ask">
-<h1>Ask</h1>
-<div class="simple-ask-form">
-<%= form_for :question do |f| %>
-<%= f.text_field :question, require: true, placeholder: 'Your Question', class: 'form-control' %>
-<%= f.text_area :details, placeholder: 'Description', class: 'form-control', rows: 4 %>
 
-<%= submit_tag 'Add Question', class: 'btn btn-success' %>
-<% end %>
-</div>
-</div>
--->
