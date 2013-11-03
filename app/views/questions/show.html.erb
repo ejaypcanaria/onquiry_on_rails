@@ -1,6 +1,5 @@
 <script>
 	$(document).ready(function() {
-		$('#add-details-form').hide();
 		
 		$('#add-details').click(function() {
 			$('#add-details-form').fadeIn();
@@ -8,7 +7,9 @@
 			return false;
 		});
 		
-		$('#ajax-loading').hide();
+		$('#add-details-form').hide();
+		$('#ajax-loading-question').hide();
+		$('#ajax-loading-answer').hide();
 		
 		$('#add-details-cancel').click(function() {
 			$('#add-details-form').hide();
@@ -23,13 +24,30 @@
 			$('#ajax-loading').hide();
 			$('.show-question-wrapper article').text(data.details);
 		});
+		
+		$('#add-answer-form').bind("ajax:beforeSend", function(evt, xhr, settings){
+			$('#add-answer-form').hide();
+			$('#ajax-loading-answer').show();
+		}).bind("ajax:success", function(evt, data, status, xhr) {
+			$('.answers-wrapper').append(xhr.responseText);
+			$('.add-answer-wrapper').hide();
+			$('#answer_answer').val("");
+			$('#ajax-loading-answer').hide();
+		});
 	});
 </script>
+
+
 
 <section class="show-question-wrapper">
 	<header>
 		<h1><%= @question.question %></h1>
-		<span class="asker"><%= @question.user.first_name %></span>
+		<span class="asker">
+			<%= @question.user.first_name %>
+			<% if (Time.now - @question.created_at) < 12.hours %>
+				<%= "#{time_ago_in_words @question.created_at} ago" %>
+			<% end %>
+		</span>
 	</header>
 	
 	<div class="date">
@@ -41,7 +59,7 @@
 	
 	<% if @question.user_id == session[:id] %>
 		<% unless @question.details %>
-			<div id="ajax-loading"></div>
+			<div id="ajax-loading-question" class="ajax-loading"></div>
 			<%= form_for @question, url: { action: :update }, method: :patch, remote: true, html: {id: "add-details-form"} do |f| %>
 				<%= f.text_area :details, class: "form-control", required: true, placeholder: "Details" %>
 				<%= f.hidden_field :id, value: @question.id %>
@@ -52,9 +70,29 @@
 			<a href="#" id="add-details">Add Details</a>
 		<% end %>
 	<% end %>
-	
 </section>
 
-<section class="add-answer-wrapper">
-	
-</section>	
+<div class="answers-wrapper">
+	<% @answers.each do |answer| %>
+		<%= render partial: 'answers/answer_in_question', locals: { answer: answer } %>
+	<% end %>
+	<div id="ajax-loading-answer" class="ajax-loading"></div>
+</div>
+
+<% unless @question.user_already_answered? session[:id] %>
+
+	<section class="add-answer-wrapper">
+		<%= form_for @answer, url: { action: :create, controller: :answers}, method: :post, remote: true, html: { id: "add-answer-form"} do |f| %>
+			<%= f.text_area :answer, class: "form-control", required: true, placeholder: "Answer", value: '' %>
+			<%= f.hidden_field :question_id, value: @question.id %>
+			<%= f.hidden_field :user_id, value: session[:id] %>
+			
+			<%= submit_tag "Add Answer", class: "btn btn-success"%>
+		<% end %>
+	</section>
+
+<% else %>
+	<div id="already-answered" class="alert alert-success">
+		You already have answer to this question.
+	</div>
+<% end %>

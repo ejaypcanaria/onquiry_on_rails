@@ -1,0 +1,10 @@
+<% if answer %>
+	<section class="answer-wrapper">
+		<header>
+			<%= answer.user.full_name %>
+			<%= time_ago_in_words answer.created_at %>
+		</header>
+		
+		<article><%= answer.answer %></article>
+	</section>
+<% end %>

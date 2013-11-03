@@ -21,8 +21,8 @@ Feature: User ask a question
 	Scenario: User add details to a question
 		Given I ask a question "This is a sample question"
 		When I click "Add Details"
-		Then I should see "Add"
-		And I should see "Cancel"
+		Then I should see a link or button "Add"
+		And I should see a link or button "Cancel"
 		When I fill in "question_details" with "This is a details"
 		Then I should see "This is a details"
 		

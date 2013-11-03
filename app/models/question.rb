@@ -3,6 +3,7 @@ class Question < ActiveRecord::Base
   before_validation :generate_permalink
   
   belongs_to :user
+  has_many :answers
 
   validates :question, presence: true, uniqueness: {message: "already exists.", case_sensitive: false}, length: { maximum: 255 }
   validates :permalink, presence: true, length: { maximum: 255 }
@@ -18,6 +19,14 @@ class Question < ActiveRecord::Base
         return true if message == "Question already exists."
       end
     end
+  end
+  
+  def user_already_answered?(userId)
+    self.answers.each do |answer|
+      return true if answer.user.id == userId
+    end
+    
+    return false
   end
 
   private

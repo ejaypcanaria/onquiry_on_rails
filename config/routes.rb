@@ -10,6 +10,10 @@ OnquiryOnrails::Application.routes.draw do
     match 'update' => :update, via: [:patch]
   end
   
+  scope path: 'answer', controller: :answers do
+    match 'create' => :create, via: [:post]
+  end
+  
   scope controller: :main do
     match 'home' => :index, via: [:get]
     match 'logout' => :logout, via: [:delete], as: 'logout'

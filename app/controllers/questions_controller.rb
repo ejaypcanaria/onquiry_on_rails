@@ -27,11 +27,14 @@ class QuestionsController < ApplicationController
       
       format.html { render action: :show }
     end
-    
   end
   
   def show
     @question = Question.find_by_permalink(params[:permalink])
+    
+    @answers = Answer.where(question_id: @question.id)
+    @answer = Answer.new
+    @answer.question_id = @question.id
   end
   
   def load_more

@@ -24,7 +24,6 @@ Feature: A user creates an account
 		And I fill in "user_email" with "juan@pinoy.ph"
 		And I fill in "user_password" with "123"
 		And I click "Create Account"
-		Then I should see "1 Validation Failed"
 		And I should see an error "Password is too short (minimum is 8 characters)"
 		
 	Scenario: Email address already exists
@@ -34,7 +33,6 @@ Feature: A user creates an account
 		And I fill in "user_email" with "ejayc@onquiry.com"
 		And I fill in "user_password" with "12345678"
 		And I click "Create Account"
-		Then I should see "1 Validation Failed"
 		Then I should see an error "Email has already been taken"
 		
 	Scenario: Email address already exists and password length is less than 8
@@ -44,6 +42,5 @@ Feature: A user creates an account
 		And I fill in "user_email" with "ejayc@onquiry.com"
 		And I fill in "user_password" with "1234567"
 		And I click "Create Account"
-		Then I should see "2 Validations Failed"
 		Then I should see an error "Email has already been taken"
 		And I should see an error "Password is too short (minimum is 8 characters)"

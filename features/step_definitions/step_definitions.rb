@@ -103,3 +103,17 @@ end
 Then(/^I should not see "(.*?)"$/) do |content|
   page.should_not have_content content
 end
+
+Given(/^I am on a question "(.*?)"$/) do |question|
+  user = FactoryGirl.build(:user)
+  sign_in(user)
+  ask(question)
+end
+
+Then(/^I should see a link or button "(.*?)"$/) do |name|
+  page.should have_selector(:link_or_button, name)
+end
+
+Then(/^I should not see a link or button "(.*?)"$/) do |arg1|
+  page.should_not have_selector(:link_or_button, name)
+end

@@ -20,6 +20,7 @@ describe Question do
   end
   
   it { should belong_to :user }
+  it { should have_many :answers }
   
   context "before save" do
     
@@ -71,6 +72,15 @@ describe Question do
     
     question = FactoryGirl.create(:question, :dummy)
     expect(question.to_param).to eql(question.question.parameterize)
+  end
+  
+  it "should check if a given user already answer the question" do
+    question = FactoryGirl.build(:question)
+    answer = FactoryGirl.build(:answer)
+    question.answers << answer
+    
+    expect(question.user_already_answered? 1).to be_true
+    expect(question.user_already_answered? 2).to be_false
   end
   
 end

@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   before_save :hash_password
   
   has_many :questions
+  has_many :answers
   
   validates :email, uniqueness: true, presence: true, length: { maximum: 100 }
   validates :password, presence: true, length: { minimum: 8 }
@@ -14,6 +15,10 @@ class User < ActiveRecord::Base
   def self.encrypt(password="", salt="")
     password = Digest::SHA1.hexdigest(password)
     password = Digest::SHA1.hexdigest("#{salt} #{password}")
+  end
+  
+  def full_name
+    "#{self.first_name} #{self.last_name}"
   end
   
   private

@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131102110048) do
+ActiveRecord::Schema.define(version: 20131103043127) do
+
+  create_table "answers", force: true do |t|
+    t.integer  "question_id"
+    t.integer  "user_id"
+    t.text     "answer",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "answers", ["question_id", "user_id"], name: "answers_foreign_index", using: :btree
 
   create_table "questions", force: true do |t|
     t.string   "question",   null: false

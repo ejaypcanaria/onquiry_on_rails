@@ -23,6 +23,7 @@ describe User do
   end
 
   it { should have_many :questions }
+  it { should have_many :answers }
 
   context "before save" do
     it { should validate_presence_of :password }
@@ -81,6 +82,11 @@ describe User do
   it "should not retrieve user information if email address is not valid" do
     invalid_user = User.find_by_email("invalid@email.com").to_a[0]
     expect(invalid_user).to be_nil
+  end
+  
+  it "should return a full name" do
+    user = FactoryGirl.build(:user, first_name: "Ejay", last_name: "Canaria")
+    expect(user.full_name).to eql("Ejay Canaria")
   end
 
 end
