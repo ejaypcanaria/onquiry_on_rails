@@ -15,11 +15,29 @@
   box-shadow: 0 0 0.5em #DDD;
 }
 
+.answer-wrapper .answer-by {
+  font-family: Georgia, Helvetica, sans-serif;
+  font-size: 1.2em;
+  display: block;
+  font-weight: bold;
+  color: #444;
+}
+
+.answers-wrapper .date-answered {
+  font-size: 0.7em;
+  display: block;
+  color: #AAA;
+}
+
 .answers-wrapper {
   width: 100%;
   height: auto;
   display: block;
 }
+
+
+
+
 
 #already-answered {
   width: 60%;

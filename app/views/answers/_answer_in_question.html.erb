@@ -1,9 +1,11 @@
 <% if answer %>
 	<section class="answer-wrapper">
 		<header>
-			<%= answer.user.full_name %>
-			<%= time_ago_in_words answer.created_at %>
+			<span class="answer-by"><%= answer.user.full_name %></span>
+			<span class="date-answered"><%= time_ago_in_words answer.created_at %></span>
 		</header>
+		
+		
 		
 		<article><%= answer.answer %></article>
 	</section>

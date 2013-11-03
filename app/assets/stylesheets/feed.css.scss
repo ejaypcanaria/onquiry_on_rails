@@ -46,16 +46,14 @@
 }
 
 .question-container > header > h1 a {
-	font-family: "League Gothic Regular", Times, serif;
+	font-family: Georgia, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 0.8em;
 	color: #444;
 }
 
 .question-container > header > h1:first-letter {
 	text-transform: capitalize;
-}
-
-.question-container > header a {
-  color: #333;
 }
 
 .question-container > header > .date {
@@ -115,7 +113,7 @@
   border-radius: 10px;
   position: fixed;
   bottom: 7%;
-  left: 62%;
+  left: 65%;
   text-align: center;
   width: 120px;
   height: 35px;
