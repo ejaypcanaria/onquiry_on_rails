@@ -8,10 +8,20 @@
 			return false;
 		});
 		
+		$('#ajax-loading').hide();
+		
 		$('#add-details-cancel').click(function() {
 			$('#add-details-form').hide();
 			$('#add-details').show();
 			return false;
+		});
+		
+		$('#add-details-form').bind("ajax:beforeSend", function(evt, xhr, settings) {
+			$('#add-details-form').hide();
+			$('#ajax-loading').show();
+		}).bind("ajax:success",function(evt, data, status, xhr) {
+			$('#ajax-loading').hide();
+			$('.show-question-wrapper article').text(data.details);
 		});
 	});
 </script>
@@ -26,18 +36,25 @@
 		<span class="date-day"><%= @question.created_at.strftime("%d") %></span>
 		<span class="date-month-year"><%= @question.created_at.strftime("%m / %Y") %></span>
 	</div>
-	<p><%= @question.details %></p>
+	<article class="details"><%= @question.details %></article>
 	
 	
-	<% unless @question.details %>
-		<%= form_for @question, url: { action: :update }, method: :patch, html: {id: "add-details-form"} do |f| %>
-			<%= f.text_area :details, class: "form-control" %>
-			<%= f.hidden_field :id, value: @question.id %>
-					
-			<%= submit_tag "Add", class: "btn btn-success"%>
-			<a href="#" id="add-details-cancel" class="btn btn-success">Cancel</a>
+	<% if @question.user_id == session[:id] %>
+		<% unless @question.details %>
+			<div id="ajax-loading"></div>
+			<%= form_for @question, url: { action: :update }, method: :patch, remote: true, html: {id: "add-details-form"} do |f| %>
+				<%= f.text_area :details, class: "form-control", required: true, placeholder: "Details" %>
+				<%= f.hidden_field :id, value: @question.id %>
+						
+				<%= submit_tag "Add", class: "btn btn-success", id: "add-details-btn"%>
+				<a href="#" id="add-details-cancel" class="btn btn-success">Cancel</a>
+			<% end %>
+			<a href="#" id="add-details">Add Details</a>
 		<% end %>
-		<a href="#" id="add-details">Add Details</a>
-		
 	<% end %>
+	
 </section>
+
+<section class="add-answer-wrapper">
+	
+</section>	

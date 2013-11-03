@@ -18,3 +18,16 @@ Feature: User ask a question
 		And I click "Ask"
 		Then I should be redirected to "Seed question number 1" page
 		
+	Scenario: User add details to a question
+		Given I ask a question "This is a sample question"
+		When I click "Add Details"
+		Then I should see "Add"
+		And I should see "Cancel"
+		When I fill in "question_details" with "This is a details"
+		Then I should see "This is a details"
+		
+	Scenario: User should not see add details for question asked by other user
+		Given I ask a question "This is a question 1 without details"
+		Then I should not see "Add Details"
+		
+		

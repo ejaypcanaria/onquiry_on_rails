@@ -22,7 +22,7 @@
 }
 
 .show-question-wrapper {
-  width: 70%;
+  width: 60%;
   padding: 1em 2em;
   padding-right: 5em;
   word-wrap: break-word;
@@ -30,6 +30,14 @@
   background-color: #FFF;
   box-shadow: 0 0 0.5em #DDD;
   position: relative;
+}
+
+.show-question-wrapper .asker {
+	color: #CCC;
+}
+
+.show-question-wrapper .asker:before {
+	content: "asked by ";
 }
 
 .show-question-wrapper > header h1 {
@@ -70,6 +78,20 @@
 	
 }
 
+.show-question-wrapper article {
+	margin-top: 10px;
+}
+
 .show-question-wrapper h1:first-letter {
 	text-transform: capitalize;
+}
+
+
+
+.add-answer-wrapper {
+	width: 60%;
+	padding: 1em 2em;
+  	padding-right: 5em;
+  	margin: 20px;
+	box-shadow: 0 0 0.5em #DDD;
 }

@@ -16,7 +16,7 @@
 		<%= form_for @new_user, url: { action: :register }, method: :post do |f| %>
 		<%= f.text_field :first_name, required: true, placeholder: 'First Name', class: 'form-control', value: '' %>
 		<%= f.text_field :last_name, required: true, placeholder: 'Last Name', class: 'form-control', value: '' %>
-		<%= f.text_field :email, required: true, placeholder: 'Email', class: 'form-control', value: '' %>
+		<%= f.email_field :email, required: true, placeholder: 'Email', class: 'form-control', value: '' %>
 		<%= f.password_field :password, required: true, placeholder: 'Password', class: 'form-control' %>
 
 		<%= submit_tag "Create Account", class: 'btn btn-success' %>

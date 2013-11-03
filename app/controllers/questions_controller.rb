@@ -17,8 +17,15 @@ class QuestionsController < ApplicationController
     @question = Question.find_by_id(params[:question][:id])
     @question.details = params[:question][:details]
     
-    if @question.save
-      render action: :show  
+    respond_to do |format|
+      
+      if @question.save
+        format.json { render json: @question }
+      else
+        format.json { render json: @question.errors }
+      end
+      
+      format.html { render action: :show }
     end
     
   end

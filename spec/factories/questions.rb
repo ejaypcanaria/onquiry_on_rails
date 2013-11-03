@@ -9,6 +9,11 @@ FactoryGirl.define do
     details DETAILS
     user_id 1
     
+    trait :no_details do
+      sequence(:question) {|n| "This is a question #{n} without details"}
+      details nil
+    end
+    
     trait :dummy do
       sequence(:question) {|n| "This is a dummy question #{n}"}
     end
