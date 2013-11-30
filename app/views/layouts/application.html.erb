@@ -1,44 +1,79 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title><%= @page_title || "OnQuiry" %></title>
-		<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-		<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-		<%= csrf_meta_tags %>
-	</head>
-	<body>
-		<header class="main">
-			
-			<%= link_to '<div class="logo">OnQuiry</div>'.html_safe, home_path%>
-		</header>
+<head>
+	<title><%= @page_title || "OnQuiry" %></title>
+	<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+	<%= csrf_meta_tags %>
+</head>
+<body>
+	<header class="main">
+		<%= link_to '<div class="logo"></div>'.html_safe, home_path%>
+	</header>
 
-		<div class="wrapper">
+	<aside class="main">
+		
+		<div class="user-icon"></div>
+		<div class="profile-box-1">
+			<%= session[:full_name] %>
+		</div>
+		
+		
+		<hr/>
+
+		<nav class="first-group">
+
+			<ul>
+				<li>
+					<div class="glyphicon glyphicon-log-out">
+						<%= link_to 'Log out', logout_path, method: :delete, class: 'left-nav' %>
+					</div>
+				</li>
+
+				<li>
+					<div class="glyphicon glyphicon-book">
+						<a class="left-nav" href="#">Questions</a>
+					</div>
+				</li>
+
+				<li>
+					<div class="glyphicon glyphicon-bookmark">
+						<a class="left-nav" href="#">Topics</a>
+					</div>
+				</li>
+			</ul>	
+
+
+
+
+
+		</nav>	
+
+	</aside>
+
+	<article class="main">
+		<%= yield %>
+	</article>
+
+<!-- 		<div class="wrapper">
 			<nav>
 				
 				<div class="glyphicon glyphicon-home">
 					<%= link_to 'Home', home_path, class: 'left-nav' %>
 				</div>
 				
-				<div class="glyphicon glyphicon-book">
-					<a class="left-nav" href="#">Questions</a>
-				</div>
+
 				
-				<div class="glyphicon glyphicon-bookmark">
-					<a class="left-nav" href="#">Topics</a>
-				</div>
-				
-				<div class="glyphicon glyphicon-log-out">
-					<%= link_to 'Log out', logout_path, method: :delete, class: 'left-nav' %>
-				</div>
+
 			</nav>
 			
 			<article>
-				<%= yield %>
+				
 			</article>
 
 			<footer>
 				&copy;2013
 			</footer>
-		</div>
+		</div> -->
 	</body>
-</html>
+	</html>

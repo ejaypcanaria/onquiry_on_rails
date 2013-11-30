@@ -1,98 +1,98 @@
 <script>
-	$(document).ready(function() {
-		
-		$('#add-details').click(function() {
-			$('#add-details-form').fadeIn();
-			$('#add-details').hide();
-			return false;
-		});
-		
-		$('#add-details-form').hide();
-		$('#ajax-loading-question').hide();
-		$('#ajax-loading-answer').hide();
-		
-		$('#add-details-cancel').click(function() {
-			$('#add-details-form').hide();
-			$('#add-details').show();
-			return false;
-		});
-		
-		$('#add-details-form').bind("ajax:beforeSend", function(evt, xhr, settings) {
-			$('#add-details-form').hide();
-			$('#ajax-loading').show();
-		}).bind("ajax:success",function(evt, data, status, xhr) {
-			$('#ajax-loading').hide();
-			$('.show-question-wrapper article').text(data.details);
-		});
-		
-		$('#add-answer-form').bind("ajax:beforeSend", function(evt, xhr, settings){
-			$('#add-answer-form').hide();
-			$('#ajax-loading-answer').show();
-		}).bind("ajax:success", function(evt, data, status, xhr) {
-			$('.answers-wrapper').append(xhr.responseText);
-			$('.add-answer-wrapper').hide();
-			$('#answer_answer').val("");
-			$('#ajax-loading-answer').hide();
-		});
+$(document).ready(function() {
+
+	$('#add-details').click(function() {
+		$('#add-details-form').fadeIn();
+		$('#add-details').hide();
+		return false;
 	});
+
+	$('#add-details-form').hide();
+	$('#ajax-loading-question').hide();
+	$('#ajax-loading-answer').hide();
+
+	$('#add-details-cancel').click(function() {
+		$('#add-details-form').hide();
+		$('#add-details').show();
+		return false;
+	});
+
+	$('#add-details-form').bind("ajax:beforeSend", function(evt, xhr, settings) {
+		$('#add-details-form').hide();
+		$('#ajax-loading').show();
+	}).bind("ajax:success",function(evt, data, status, xhr) {
+		$('#ajax-loading').hide();
+		$('.show-question-wrapper article').text(data.details);
+	});
+
+	$('#add-answer-form').bind("ajax:beforeSend", function(evt, xhr, settings){
+		$('#add-answer-form').hide();
+		$('#ajax-loading-answer').show();
+	}).bind("ajax:success", function(evt, data, status, xhr) {
+		$('.answers-wrapper').append(xhr.responseText);
+		$('.add-answer-wrapper').hide();
+		$('#answer_answer').val("");
+		$('#ajax-loading-answer').hide();
+	});
+});
 </script>
 
-
-
-<section class="show-question-wrapper">
-	<header>
-		<h1><%= @question.question %></h1>
-		<span class="asker">
-			<%= @question.user.first_name %>
-			<% if (Time.now - @question.created_at) < 12.hours %>
+<div class="show-question-wrapper">
+	<section class="question-wrapper">
+		<header>
+			<h1><%= @question.question %></h1>
+			<span class="asker">
+				<%= @question.user.first_name %>
+				<% if (Time.now - @question.created_at) < 12.hours %>
 				<%= "#{time_ago_in_words @question.created_at} ago" %>
-			<% end %>
-		</span>
-	</header>
-	
-	<div class="date">
-		<span class="date-day"><%= @question.created_at.strftime("%d") %></span>
-		<span class="date-month-year"><%= @question.created_at.strftime("%m / %Y") %></span>
-	</div>
-	<article class="details"><%= @question.details %></article>
-	
-	
-	<% if @question.user_id == session[:id] %>
+				<% end %>
+			</span>
+		</header>
+
+		<!-- <div class="date">
+			<span class="date-day"><%= @question.created_at.strftime("%d") %></span>
+			<span class="date-month-year"><%= @question.created_at.strftime("%m / %Y") %></span>
+		</div> -->
+		<article class="details"><%= @question.details %></article>
+
+
+		<% if @question.user_id == session[:id] %>
 		<% unless @question.details %>
-			<div id="ajax-loading-question" class="ajax-loading"></div>
-			<%= form_for @question, url: { action: :update }, method: :patch, remote: true, html: {id: "add-details-form"} do |f| %>
-				<%= f.text_area :details, class: "form-control", required: true, placeholder: "Details" %>
-				<%= f.hidden_field :id, value: @question.id %>
-						
-				<%= submit_tag "Add", class: "btn btn-success", id: "add-details-btn"%>
-				<a href="#" id="add-details-cancel" class="btn btn-success">Cancel</a>
-			<% end %>
-			<a href="#" id="add-details">Add Details</a>
+		<div id="ajax-loading-question" class="ajax-loading"></div>
+		<%= form_for @question, url: { action: :update }, method: :patch, remote: true, html: {id: "add-details-form"} do |f| %>
+		<%= f.text_area :details, class: "form-control", required: true, placeholder: "Details" %>
+		<%= f.hidden_field :id, value: @question.id %>
+
+		<%= submit_tag "Add", class: "onquiry-btn onquiry-btn-2", id: "add-details-btn"%>
+		<button  id="add-details-cancel" class="onquiry-btn onquiry-btn-2">Cancel</button>
 		<% end %>
-	<% end %>
-</section>
-
-<div class="answers-wrapper">
-	<% @answers.each do |answer| %>
-		<%= render partial: 'answers/answer_in_question', locals: { answer: answer } %>
-	<% end %>
-	<div id="ajax-loading-answer" class="ajax-loading"></div>
-</div>
-
-<% unless @question.user_already_answered? session[:id] %>
-
-	<section class="add-answer-wrapper">
-		<%= form_for @answer, url: { action: :create, controller: :answers}, method: :post, remote: true, html: { id: "add-answer-form"} do |f| %>
-			<%= f.text_area :answer, class: "form-control", required: true, placeholder: "Answer", value: '' %>
-			<%= f.hidden_field :question_id, value: @question.id %>
-			<%= f.hidden_field :user_id, value: session[:id] %>
-			
-			<%= submit_tag "Add Answer", class: "btn btn-success"%>
+		<a href="#" id="add-details">Add Details</a>
+		<% end %>
 		<% end %>
 	</section>
 
-<% else %>
+	<section class="answers-wrapper">
+		<% @answers.each do |answer| %>
+		<%= render partial: 'answers/answer_in_question', locals: { answer: answer } %>
+		<% end %>
+		<div id="ajax-loading-answer" class="ajax-loading"></div>
+	</section>
+
+	<% unless @question.user_already_answered? session[:id] %>
+
+	<section class="add-answer-wrapper">
+		<%= form_for @answer, url: { action: :create, controller: :answers}, method: :post, remote: true, html: { id: "add-answer-form"} do |f| %>
+		<%= f.text_area :answer, class: "form-control", required: true, placeholder: "Answer", value: '' %>
+		<%= f.hidden_field :question_id, value: @question.id %>
+		<%= f.hidden_field :user_id, value: session[:id] %>
+
+		<%= submit_tag "Add Answer", class: "onquiry-btn onquiry-btn-2"%>
+		<% end %>
+	</section>
+
+	<% else %>
 	<div id="already-answered" class="alert alert-success">
 		You already have answer to this question.
 	</div>
-<% end %>
+	<% end %>
+</div>

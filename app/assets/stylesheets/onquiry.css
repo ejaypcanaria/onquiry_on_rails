@@ -1,0 +1,43 @@
+.onquiry-btn {
+	background-color: #209453;
+	padding: 5px 10px;
+	color: #FFF;
+	border: none;
+}
+
+.onquiry-btn-1 {
+	margin: 5px auto;
+	font-family: Bebas, Tahoma, serif;
+	font-weight: normal;
+	color: #FFF;
+	display: block;
+	border: none;
+	font-size: 1.5em;
+	width: 40%;
+}
+
+.onquiry-btn:hover {
+	cursor: pointer;
+	background-color: #22A159;
+}
+
+.onquiry-btn:active {
+	box-shadow: inset 0px 0px 20px 0px rgba(18,93,52,0.5);
+}
+
+.onquiry-btn-2 {
+	font-family: Helvetica, Tahoma, sans-serif;
+	background-color: #27AE60;
+	margin: 10px 2px;
+}
+
+.onquiry-bg-color {
+	background-color: #2ECC71;
+}
+
+.onquiry-input-1 {
+	padding: 8px 10px;
+	margin: 5px auto;
+	width: 40%;
+	display: block;
+}

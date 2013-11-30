@@ -1,54 +1,42 @@
-.simple-ask {
-  margin: 0;
-  padding: 0;
-  margin-left: 45%;
-  width: 50%;
-  position: fixed;
-}
-
-.simple-ask > h1 {
-  margin: 0;
-  font-size: 2em;
-}
-
-.simple-ask-form {
-  width: 200px;
-}
-
-.simple-ask-form textarea {
-  margin: 10px;
-  resize: none;
-  width: 250px;
-}
-
 .show-question-wrapper {
-  width: 60%;
+	width: 50%;
+	word-wrap: break-word;
+	margin-left: 5%;
+	margin-top: 20px;
+}
+
+.question-wrapper {
+  width: 100%;
   padding: 1em 2em;
-  padding-right: 5em;
   word-wrap: break-word;
-  margin: 20px;
   background-color: #FFF;
   box-shadow: 0 0 0.5em #DDD;
   position: relative;
 }
 
-.show-question-wrapper .asker {
-	color: #CCC;
+.question-wrapper .asker {
+	font-family: Tahoma, Helvetica, sans-serif;
+	color: #AAA;
+	display: block;
+	margin-top: 2px;
 }
 
-.show-question-wrapper .asker:before {
+.question-wrapper .asker:before {
 	content: "asked by ";
 }
 
-.show-question-wrapper > header h1 {
-	font-family: "League Gothic Regular", Times, serif;
+.question-wrapper > header h1 {
+	//font-family: "League Gothic Regular", Times, serif;
+  	font-family: Tahoma, Helvetica, sans-serif;
   	padding: 0;
   	margin: 0;
   	color: #444;
+  	font-size: 1.8em;
+  	line-height: 1.3em;
 }
 
-.show-question-wrapper .date {
-	display: block;
+.question-wrapper .date {
+	font-family: Tahoma, Helvetica, serif;
 	width: 60px;
 	height: 50px;
 	background-color: #0E8144;
@@ -59,30 +47,30 @@
 	text-align: center;
 }
 
-.show-question-wrapper p {
+.question-wrapper p {
 	text-align: justify;
 }
 
-.show-question-wrapper .date-day {
+.question-wrapper .date-day {
 	font-family: Bebas, Tahoma, serif;
 	font-size: 1.5em;
 	display: block;
 }
 
-.show-question-wrapper .date-month-year {
+.question-wrapper .date-month-year {
 	font-size: 0.7em;
 	font-family: Bebas, Tahoma, serif;
 }
 
-.show-question-wrapper header {
+.question-wrapper header {
 	
 }
 
-.show-question-wrapper article {
+.question-wrapper article {
 	margin-top: 10px;
 	color: #555;
 }
 
-.show-question-wrapper h1:first-letter {
+.question-wrapper h1:first-letter {
 	text-transform: capitalize;
 }

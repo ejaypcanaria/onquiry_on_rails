@@ -1,4 +1,4 @@
-<% @page_title = "Welcome #{session[:first_name]}!" %>
+<% @page_title = "Welcome #{session[:full_name]}!" %>
 
 <script>
 didScroll = false;
@@ -26,40 +26,37 @@ $(document).ready(function() {
 	addBackToTopListener();
 	
 	$('#load-more-feed')
-		.bind("ajax:beforeSend", function(evt, xhr, settings) {
-			$('#load-more-feed').text("");
-			$('.load-more-wrapper').css('background-image','url("<%= asset_path('ajax-loader.gif') %>")');
-		})
+	.bind("ajax:beforeSend", function(evt, xhr, settings) {
+		$('#load-more-feed').text("");
+		$('.load-more-wrapper').css('background-image','url("<%= asset_path('ajax-loader.gif') %>")');
+	})
 
-		.bind("ajax:success", function(evt, data, status, xhr) {
+	.bind("ajax:success", function(evt, data, status, xhr) {
 
-			setTimeout(function() {
-				if(xhr.responseText == "") {
-					$('#load-more-feed').hide();
-					$('.load-more-wrapper').text("No More Feed");
-				} else {
-					$('#feed-container').append(xhr.responseText);
-				}
+		setTimeout(function() {
+			if(xhr.responseText == "") {
+				$('#load-more-feed').hide();
+				$('.load-more-wrapper').text("No More Feed");
+			} else {
+				$('#feed-container').append(xhr.responseText);
+			}
 			
-				$('#load-more-feed').text($origText);
-				$('.load-more-wrapper').css('background-image','none');
+			$('#load-more-feed').text($origText);
+			$('.load-more-wrapper').css('background-image','none');
 			
-				$counter = $counter + 10;
-				$('#load-more-feed').attr("href","/question/load/10/" + $counter);
+			$counter = $counter + 10;
+			$('#load-more-feed').attr("href","/question/load/10/" + $counter);
 			
-			}, 500);
-		});
+		}, 500);
+	});
 });
 
 </script>
 
 <div class="feed-ask-wrapper">
-	<%= form_for @question, url: { controller: :questions, action: :create}, html: {class: 'form-inline', role: 'form'} do |f| %>
-	<div class="form-group col-lg-10">
-		<label class="sr-only" for="question_question">Question</label>
-		<%= f.text_field :question, require: true, placeholder: 'What is your question?', class: 'form-control', required: true, maxlength: 255 %>
-	</div>
-	<%= submit_tag 'Ask', class: 'btn btn-success' %>
+	<%= form_for @question, url: { controller: :questions, action: :create} do |f| %>
+		<%= f.text_field :question, require: true, placeholder: 'What is your question?', class: 'feed-ask-input-text', required: true, maxlength: 255 %>
+		<%= submit_tag "Ask", class: "onquiry-btn onquiry-btn-2" %>
 	<% end %>
 </div>
 

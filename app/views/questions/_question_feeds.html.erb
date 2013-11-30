@@ -1,8 +1,13 @@
 <% questions.each do |question_feed| %>
-<section class="question-container">
+<section class="asker-info">
+	<div class="user-icon"></div>
+	<span class="asker-name"><%= question_feed.user.full_name %></span>
+	<span class="date"><%= "#{time_ago_in_words question_feed.created_at} ago" %></span>
+</section>
+
+<section class="question-container">	
 	<header>
 		<h1><%= link_to question_feed.question, show_question_path(question_feed) %></h1>
-		<span class="date"><%= time_ago_in_words question_feed.created_at %></span>
 	</header>
 	
 	<article>
@@ -12,8 +17,9 @@
 	</article>
 	
 	<footer>
-		<span>Answer</span>
-		<span>Follow</span>
+		
+		<a href="#">Answer</a>
+		<a href="#">Follow</a>	
 	</footer>
 </section>
 <% end %>

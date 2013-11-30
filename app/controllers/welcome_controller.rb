@@ -11,8 +11,7 @@ class WelcomeController < ActionController::Base
     user = User.find_by_email(params[:login][:email]).to_a[0]
     if user && User.encrypt(params[:login][:password], user.salt) == user.password
         session[:id] = user.id
-        session[:first_name] = user.first_name
-        session[:last_name] = user.last_name
+        session[:full_name] = user.full_name
         
         redirect_to controller: :main, action: :index
     else

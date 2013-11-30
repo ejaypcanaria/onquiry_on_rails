@@ -1,84 +1,103 @@
+$left-margin: 2%;
+
 .feed-wrapper {
 	width: 50%;
-	margin-left: 25px;
-	margin-top: 65px;
+	margin-left: $left-margin;
 	float: left;
 }
 
 .feed-wrapper > button {
-  padding: 10px;
-  margin: 0 auto;
-  width: 100%;
-  background-color: #DDD;
-  border: 1px solid #CCC;
-  color: #BBB;
+	padding: 10px;
+	margin: 0 auto;
+	width: 100%;
+	background-color: #DDD;
+	border: 1px solid #CCC;
+	color: #BBB;
 }
 
 .feed-wrapper > button:hover {
-  color: #FFF;
+	color: #FFF;
+}
+
+.asker-info {
+	float: left;
+	clear: left;
+	width: 100px;
+}
+
+.asker-info .user-icon {
+	margin-left: 18%;
+}
+
+.asker-info * {
+	display: block;
+	text-align: center;
+}
+
+.asker-info > .date {
+	font-family: Tahoma, Helvetica, sans-serif;
+	font-size: 0.7em;
+	color: #AAA;
+}
+
+.asker-info > .asker-name {
+	color: #666;
 }
 
 .question-container {
-	width: 100%;
+	width: 70%;
 	float: left;
-	clear: both;
+	clear: right;
 	background-color: #FFF;
-	margin-bottom: 10px;
-	box-shadow: 0 0 0.1em #DDD;
-	border: 1px solid #DDD;
+	margin-bottom: 20px;
+	margin-left: 50px;
 	position: relative;
 	word-wrap: break-word;
+	padding: 0px 10px;
+}
+
+.question-container:before {
+	content:"";
+	position: absolute;
+	right: 100%;
+	top: 35%;
+	width: 0;
+	height: 0;
+	border-top: 13px solid transparent;
+	border-right: 26px solid #FFF;
+	border-bottom: 13px solid transparent;
 }
 
 .question-container > header {
-  display: block;
-  width: 100%;
-  height: auto;
-  float: left;
-  padding: 5px;
+	display: block;
+	width: 100%;
+	height: auto;
+	float: left;
+	padding: 5px;
 }
 
 .question-container > header > h1 {
-  font-size: 1.7em;
-  margin: 0;
-  padding: 0;
-  padding: 0 10px;
+	font-size: 1.7em;
+	margin: 0;
+	padding: 0;
+	padding: 0 10px;
 }
 
 .question-container > header > h1 a {
-	font-family: Georgia, Helvetica, sans-serif;
-	font-weight: bold;
-	font-size: 0.8em;
-	color: #444;
+	font-family: Tahoma, Helvetica, sans-serif;
+	font-weight: normal;
+	font-size: 0.7em;
+	color: #666;
 }
 
 .question-container > header > h1:first-letter {
 	text-transform: capitalize;
 }
 
-.question-container > header > .date {
-  font-family: Times, "Times New Romain", serif;
-  font-size: 0.8em;
-  padding-left: 10px;
-  color: #AAA;
-  display: block;
-}
-
-.question-container > footer {
-	color: #AAA;
-	width: 100%;
-	height: 30px;
-	line-height: 30px;
-	text-align: center;
-	display: block;
-	background-color: #EEE;
-	float: left;
-}
-
 .question-container > article p {
 	font-size: 0.9em;
 	height: 50%;
-	color: #555;
+	color: #777;
 	text-align: justify;
 	padding: 0px 15px 5px 15px;
 	
@@ -91,55 +110,71 @@
 	padding: 0;
 }
 
-.question-container > footer > span:first-of-type {
-	border-right: 1px solid #CCC;
+.question-container > footer {
+	padding: 8px 10px;
+	border-top: 1px solid #EEE;
+	display: block;
+	width: 100%;
+	float: left;
+	font-size: 0.9em;
+}
+
+.question-container > footer > a {
+	margin: 0px 5px;
+	color: #888;
 }
 
 .feed-ask-wrapper {
-	width: 41%;
+	width: 36%;
 	height: 55px;
-	position: fixed;
-	top: 60px;
-	margin-left: 20px;
+	margin-top: 20px;
+	margin-left: 12%;
+	margin-bottom: 10px;
 	display: block;
 	z-index: 999;
-	border-radius: 0 0 10px 10px;
-	background-color: #CCC;
+}
+
+.feed-ask-input-text {
+	padding: 8px 10px;
+	width: 90%;
+	border: 1px solid #DDD;
+	box-shadow: 0 0 0.1em #DDD;
 }
 
 .back-to-top {
-  color: #333;
-  background-color: #CCC;
-  border-radius: 10px;
-  position: fixed;
-  bottom: 7%;
-  left: 65%;
-  text-align: center;
-  width: 120px;
-  height: 35px;
-  line-height: 35px;
-  display: block;
+	color: #333;
+	background-color: #DDD;
+	position: fixed;
+	bottom: 3%;
+	left: 62%;
+	text-align: center;
+	width: 120px;
+	height: 35px;
+	line-height: 35px;
+	display: block;
 }
 
 .back-to-top:hover {
-  background-color: #13AD5C;
-  color: #FFF;
+	background-color: #13AD5C;
+	color: #FFF;
 }
 
 .back-to-top span {
-  margin-right: 10px;
+	margin-right: 10px;
 }
 
 .load-more-wrapper {
-  width: 100%;
-  height: 40px;
-  float: left;
-  margin-bottom: 40px;
-  text-align: center;
-  background-repeat: no-repeat;
-  background-position: center;
+	width: 70%;
+	height: 40px;
+	float: left;
+	margin-left: 150px;
+	margin-bottom: 40px;
+	text-align: center;
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
 .feed-alert-container {
-	width: 100%;
+	width: 70%;
 }
+

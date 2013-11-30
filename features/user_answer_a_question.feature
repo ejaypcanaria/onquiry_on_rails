@@ -13,5 +13,4 @@ Feature: User answers a question
 		When I fill in "answer_answer" with "This is a sample answer"
 		And I click "Add Answer"
 		Then I should see "This is a sample answer"
-		And I should see "You already have answer to this question."
 		And I should not see a link or button "Add Answer"

@@ -114,6 +114,7 @@ Then(/^I should see a link or button "(.*?)"$/) do |name|
   page.should have_selector(:link_or_button, name)
 end
 
-Then(/^I should not see a link or button "(.*?)"$/) do |arg1|
+Then(/^I should not see a link or button "(.*?)"$/) do |name|
   page.should_not have_selector(:link_or_button, name)
 end
+

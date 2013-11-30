@@ -1,25 +1,33 @@
 <%= render_alert(@new_user) %>
 
-<div class="welcome-section">
-	
-		<blockquote>
-			“Any fool can know. The point is to understand.”
-		</blockquote>
-		― Albert Einstein
-	
-</div>
+<div class="welcome-panel">
+	<h1>Onquiry</h1>
+	<div class="welcome-panel-image"></div>
 
-<div class="welcome-section">
-	<h1>Create an Account</h1>
+	<div class="login-panel">
+		<%= form_for :login, url: { action: :login }, method: :post, html: { role: 'form' } do |f| %>
 
-	<div class="form-container-medium">
+		<label class="sr-only" for="login_email">Email address</label>
+		<%= f.text_field 'email', required: true, placeholder: 'Email', class: 'onquiry-input-1' %>
+
+		<label class="sr-only" for="login_password">Password</label>
+		<%= f.password_field 'password', required: true, placeholder: 'Password', class: 'onquiry-input-1' %>
+
+		<%= submit_tag "Login", class: 'onquiry-btn onquiry-btn-1'%>
+		<button class="onquiry-btn onquiry-btn-1" onclick="showSignUpPanel();">Sign Up</button>
+		<% end %>
+		
+	</div>
+
+	<div class="sign-up-panel">
 		<%= form_for @new_user, url: { action: :register }, method: :post do |f| %>
-		<%= f.text_field :first_name, required: true, placeholder: 'First Name', class: 'form-control', value: '' %>
-		<%= f.text_field :last_name, required: true, placeholder: 'Last Name', class: 'form-control', value: '' %>
-		<%= f.email_field :email, required: true, placeholder: 'Email', class: 'form-control', value: '' %>
-		<%= f.password_field :password, required: true, placeholder: 'Password', class: 'form-control' %>
+		<%= f.text_field :first_name, required: true, placeholder: 'First Name', class: 'onquiry-input-1', value: '' %>
+		<%= f.text_field :last_name, required: true, placeholder: 'Last Name', class: 'onquiry-input-1', value: '' %>
+		<%= f.email_field :email, required: true, placeholder: 'Email', class: 'onquiry-input-1', value: '' %>
+		<%= f.password_field :password, required: true, placeholder: 'Password', class: 'onquiry-input-1' %>
 
-		<%= submit_tag "Create Account", class: 'btn btn-success' %>
+		<%= submit_tag "Create Account", class: 'onquiry-btn onquiry-btn-1' %>
+		<button class="onquiry-btn onquiry-btn-1" onclick="showLoginPanel();">Back</button>
 		<% end %>
 	</div>
 

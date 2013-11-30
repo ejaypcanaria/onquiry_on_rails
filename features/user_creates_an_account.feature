@@ -6,11 +6,12 @@ Feature: A user creates an account
 	
 	Scenario: User registration page
 		Given I am on the welcome page
-		Then I should see a "Create an Account" page
+		Then I should see a "Sign Up" page
 		
 	Scenario: Fill out registration form
 		Given I am on the welcome page again
-		When I fill in "user_first_name" with "Ejay"
+		When I click "Sign Up" 
+		And I fill in "user_first_name" with "Ejay"
 		And I fill in "user_last_name" with "Canaria"
 		And I fill in "user_email" with "ejayc@onquiry.com"
 		And I fill in "user_password" with "ejay1234"

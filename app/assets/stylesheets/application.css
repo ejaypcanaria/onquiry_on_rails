@@ -10,16 +10,19 @@
  *
  *= require_self
  *= require bootstrap
+ *= require onquiry
  *= require_tree .
  */
 
 * {
-	font-family: Georgia, Helvetica, sans-serif;
+	font-family: Tahoma, Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
 }
 
+a {
+	color: #26AD5F;
+}
 
-
-input {
-	margin: 10px !important;
-	padding: 10px;
+html {
+	background-color: #EEEEEE;
 }
