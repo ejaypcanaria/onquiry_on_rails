@@ -1,0 +1,79 @@
+function initializeFeed() {
+
+	var origText = $('#load-more-feed').text();
+	var counter = 10;
+
+	addBackToTopListener();
+
+	$('#load-more-feed')
+	.bind("ajax:beforeSend", function(evt, xhr, settings) {
+		$('#load-more-feed').text("");
+		$('.load-more-wrapper').css('background-image','url("<%= asset_path('ajax-loader.gif') %>")');
+	})
+
+	.bind("ajax:success", function(evt, data, status, xhr) {
+
+		setTimeout(function() {
+			if(xhr.responseText == "") {
+				$('#load-more-feed').hide();
+				$('.load-more-wrapper').text("No More Feed");
+			} else {
+				$('#feed-container').append(xhr.responseText);
+			}
+
+			$('#load-more-feed').text(origText);
+			$('.load-more-wrapper').css('background-image','none');
+
+			counter = counter + 10;
+			$('#load-more-feed').attr("href","/question/load/10/" + counter);
+
+		}, 500);
+	});
+	
+
+}
+
+function loadMoreFeed() {
+	if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+		$('#load-more-feed').click();
+	}
+}
+
+function addBackToTopListener() {
+	$('.back-to-top').hide();
+
+	$('.back-to-top').click(function() {
+		$("html, body").animate({scrollTop: 0}, 800);
+		return false;
+	});
+	
+
+	$(window).scroll(function() {
+		if ($(this).scrollTop() > 700) {
+			$('.back-to-top').fadeIn();	
+		} else {
+			$('.back-to-top').fadeOut();	
+		}
+	});
+}
+
+function addScrollListener() {
+	didScroll = false;
+
+	$(window).scroll(function() {
+		didScroll = true;
+	});
+
+	setInterval(function() {
+		if (didScroll) {
+			didScroll = false;
+			loadMoreFeed();
+		}
+	}, 250);
+}
+
+function addReloadListener() {
+	setInterval(function() {
+		location.reload();
+	}, 1000 * 60 * 5);
+}
